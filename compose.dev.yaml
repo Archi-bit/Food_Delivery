@@ -1,0 +1,13 @@
+# Local educational overrides: docker compose -f compose.yaml -f compose.dev.yaml ...
+services:
+  backend:
+    environment:
+      DJANGO_DEBUG: "1"
+      DEMO_MODE: "1"
+      DJANGO_SSL_REDIRECT: "0"
+    volumes:
+      - ./backend:/app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports: ["127.0.0.1:8000:8000"]
+  db:
+    ports: ["127.0.0.1:5432:5432"]
